@@ -3,8 +3,8 @@
 
 #include <boost/utility.hpp>
 
-template<ForwardIt>
-ForwardIt::value_type sum(ForwardIt first, ForwardIt last)
+template<class ForwardIt>
+typename ForwardIt::value_type sum(ForwardIt first, ForwardIt last)
 {
   if (first == last)
     return static_cast<ForwardIt::value_type>(0);

@@ -29,8 +29,10 @@ add_library(util SHARED
   primes.c
   primes.h
   primes.hh
+  product.hh
   radixsort.cc
   radixsort.hh
+  sum.hh
   util.cc
   util.hh
   vector.hh
@@ -50,6 +52,7 @@ set(PROBLEMS
   7.cc 
   8.cc 
   9.cc 
+  10.cc
   11.cc
   42.cc
   44.cc
