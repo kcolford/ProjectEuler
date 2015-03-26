@@ -10,4 +10,3 @@ int main()
     o += primes[i];
   cout << o << endl;
 }
-  
