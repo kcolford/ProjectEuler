@@ -49,6 +49,7 @@ set(PROBLEMS
   6.cc
   7.cc 
   8.cc 
+  9.cc 
   11.cc
   42.cc
   44.cc
