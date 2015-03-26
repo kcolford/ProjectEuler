@@ -56,6 +56,8 @@ set(PROBLEMS
   11.cc
   12.cc 
   13.cc 
+  14.cc 
+  15.cc 
   42.cc
   44.cc
   45.cc
