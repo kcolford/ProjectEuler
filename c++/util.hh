@@ -13,6 +13,8 @@
 #include <iterator>
 #include "len.h"
 #include "limiter.hh"
+#include <sstream>
+#include <string>
 #include "vector.hh"
 
 using namespace std;
