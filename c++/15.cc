@@ -1,7 +1,6 @@
 // problem 15
 
 #include "util.hh"
-#include "attributes.h"
 
 long long search(int a, int b)
 {
