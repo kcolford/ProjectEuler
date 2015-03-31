@@ -3,31 +3,27 @@
 #include <algorithm>
 #include <cstdlib>
 #include <fstream>
-#include <set>
 #include <stdexcept>
 #include <string>
 #include "vector.hh"
 
 using namespace std;
 
-#define UPPER_BOUND 
-#define RESERVE 
-
 int main(int argc, char *argv[]) {
   int upperbound = 10000000;
   int reserve = 1000000;
   string filename = "primes.c";
 
-  switch (argc) {
+  switch (argc - 1) {
   default:
     throw invalid_argument("Incorrect number of arguments.");
-  case 4:
-    reserve = atoi(argv[3]);
   case 3:
-    upperbound = atoi(argv[2]);
+    reserve = atoi(argv[3]);
   case 2:
-    filename = argv[1];
+    upperbound = atoi(argv[2]);
   case 1:
+    filename = argv[1];
+  case 0:
     ;
   }
 

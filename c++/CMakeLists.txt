@@ -8,7 +8,7 @@ set(INFILE_DIRECTORY "${CMAKE_SOURCE_DIR}/../")
 find_package(OpenMP)
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenMP_CXX_FLAGS}")
 
-add_executable(generate_primes generate_primes.cc)
+add_executable(generate_primes generate_primes.cc vector.hh)
 add_custom_command(OUTPUT primes.c
   COMMAND generate_primes ${CMAKE_CURRENT_BINARY_DIR}/primes.c
   DEPENDS generate_primes
