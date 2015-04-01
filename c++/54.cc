@@ -53,7 +53,6 @@ struct group
   group(vector<card>& v)
   {
     assert(!v.empty());
-    const int s = v.size();
     vector<card>::iterator i = v.end();
     i--;
     value = i->value;

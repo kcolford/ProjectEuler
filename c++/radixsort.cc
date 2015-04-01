@@ -26,7 +26,7 @@ void radixsort(vector<const char *>& stuff, int depth)
   vector<const char *> buckets[256];
   
   for (int i = 0; i < stuff.size(); i++)
-    buckets[stuff[i][depth]].push_back(stuff[i]);
+    buckets[(int) stuff[i][depth]].push_back(stuff[i]);
 
   for (int i = 1; i < 256; i++)
     radixsort(buckets[i], depth + 1);

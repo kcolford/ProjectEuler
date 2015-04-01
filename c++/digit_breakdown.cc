@@ -62,7 +62,7 @@ bool digit_breakdown::is_palindrome() const
   return *this == make_reversed();
 }
 
-digit_breakdown& digit_breakdown::operator*=(unsigned i)
+digit_breakdown& digit_breakdown::operator*=(base_type i)
 {
   digit_breakdown t = *this;
   clear();
@@ -75,9 +75,9 @@ digit_breakdown& digit_breakdown::operator*=(unsigned i)
   return normalize();
 }
 
-int digit_breakdown::sum() const
+digit_breakdown::base_type digit_breakdown::sum() const
 {
-  int out = 0;
+  base_type out = 0;
   for (const_iterator i = begin(); i != end(); i++)
     out += *i;
   return out;
@@ -86,6 +86,6 @@ int digit_breakdown::sum() const
 std::ostream& operator<<(std::ostream& out, const digit_breakdown& d)
 {
   for (digit_breakdown::const_iterator i = d.begin(); i != d.end(); i++)
-    out << *i;
+    out << (digit_breakdown::base_type) *i;
   return out;
 }

@@ -5,6 +5,16 @@ set(BUILD_SHARED_LIBS ON)
 
 set(INFILE_DIRECTORY "${CMAKE_SOURCE_DIR}/../")
 
+add_compile_options(
+  -Wall
+  -Wextra
+  -Werror
+  -Wsuggest-attribute=pure
+  -Wsuggest-attribute=const
+  -Wsuggest-attribute=noreturn
+  -Wno-sign-compare
+  )
+
 find_package(OpenMP)
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenMP_CXX_FLAGS}")
 
