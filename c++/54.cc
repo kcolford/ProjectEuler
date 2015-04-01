@@ -120,7 +120,7 @@ struct groups
 
   unsigned long long to_int() const
   {
-    int out = 0;
+    unsigned long long out = 0;
 
     out *= 2;
     if (is_strait() && is_flush())
