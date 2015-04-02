@@ -1,6 +1,5 @@
 // problem 59
 
-#include "config.h"
 #include "util.hh"
 
 int cipher[] = {

@@ -8,7 +8,6 @@ set(INFILE_DIRECTORY "${CMAKE_SOURCE_DIR}/../")
 add_compile_options(
   -Wall
   -Wextra
-  -Werror
   -Wsuggest-attribute=pure
   -Wsuggest-attribute=const
   -Wsuggest-attribute=noreturn
@@ -19,6 +18,21 @@ find_package(OpenMP)
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenMP_CXX_FLAGS}")
 
 set(GMP gmpxx gmp)
+
+find_package(PythonInterp)
+if(PYTHONINTERP_FOUND)
+  set(JSONCPP_DIR ${CMAKE_CURRENT_SOURCE_DIR}/jsoncpp/dist)
+  add_custom_command(OUTPUT jsoncpp.cpp
+    COMMAND ${PYTHON_EXECUTABLE}
+    ${CMAKE_CURRENT_SOURCE_DIR}/jsoncpp/amalgamate.py
+    -s jsoncpp.cpp
+    -t ${CMAKE_CURRENT_SOURCE_DIR}/jsoncpp
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    )
+  set(JSON_LIB jsoncpp)
+  add_library(${JSON_LIB} jsoncpp.cpp)
+  target_include_directories(jsoncpp PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+endif(PYTHONINTERP_FOUND)
 
 add_executable(generate_primes generate_primes.cc vector.hh)
 add_custom_command(OUTPUT primes.c
@@ -56,7 +70,7 @@ target_include_directories(util
   PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
   )
 target_link_libraries(util
-  PUBLIC ${GMP}
+  PUBLIC ${GMP} ${JSON_LIB}
   )
 
 set(PROBLEMS
@@ -76,6 +90,7 @@ set(PROBLEMS
   14.cc 
   15.cc 
   16.cc 
+  17.cc 
   42.cc
   44.cc
   45.cc
@@ -119,5 +134,7 @@ foreach(src ${PROBLEMS})
     )
 endforeach()
 
-configure_file(config.h.in config.h)
+target_link_libraries(17 ${JSON_LIB})
+
+configure_file(config.h config.h)
 

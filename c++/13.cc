@@ -1,7 +1,7 @@
 // problem 13
 
 #include "util.hh"
-#include "config.h"
+#include <config.h>
 #include <gmpxx.h>
 
 int main()

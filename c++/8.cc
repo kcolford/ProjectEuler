@@ -1,7 +1,7 @@
 // problem 8
 
 #include "util.hh"
-#include "config.h"
+#include <config.h>
 #include "product.hh"
 
 int main()

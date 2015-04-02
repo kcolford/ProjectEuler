@@ -1,11 +1,8 @@
 // Project Euler Problem 81
 
-#include "config.h"
-#include <fstream>
-#include <iostream>
+#include "util.hh"
+#include <config.h>
 #include <limits>
-
-using namespace std;
 
 int table[80][80];
 

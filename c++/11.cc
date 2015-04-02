@@ -1,7 +1,7 @@
 // Project Euler: problem 11
 
 #include "util.hh"
-#include "config.h"
+#include <config.h>
 
 int main () {
     fstream file (INFILE_DIRECTORY "11.in");

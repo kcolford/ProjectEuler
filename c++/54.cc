@@ -3,7 +3,7 @@
 #include "util.hh"
 #include "attributes.h"
 #include <boost/operators.hpp>
-#include "config.h"
+#include <config.h>
 #include <cstring>
 
 struct card

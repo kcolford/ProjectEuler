@@ -1,0 +1,40 @@
+{
+    "tens": [
+        null,
+        null,
+        "twenty",
+        "thirty",
+        "forty",
+        "fifty",
+        "sixty",
+        "seventy",
+        "eighty",
+        "ninety"
+    ],
+    "units": {
+        "ones": [
+            "",
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight",
+            "nine"
+        ],
+        "teens": [
+            "ten",
+            "eleven",
+            "twelve",
+            "thirteen",
+            "fourteen",
+            "fifteen",
+            "sixteen",
+            "seventeen",
+            "eighteen",
+            "nineteen"
+        ]
+    }
+}
