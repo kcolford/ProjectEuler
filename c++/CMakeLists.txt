@@ -18,6 +18,8 @@ add_compile_options(
 find_package(OpenMP)
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenMP_CXX_FLAGS}")
 
+set(GMP gmpxx gmp)
+
 add_executable(generate_primes generate_primes.cc vector.hh)
 add_custom_command(OUTPUT primes.c
   COMMAND generate_primes ${CMAKE_CURRENT_BINARY_DIR}/primes.c
@@ -52,6 +54,9 @@ target_include_directories(util
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
   PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
   )
+target_link_libraries(util
+  PUBLIC ${GMP}
+  )
 
 set(PROBLEMS
   1.cc
@@ -85,10 +90,11 @@ set(PROBLEMS
 
 set(LIBUTIL util)
 if(CMAKE_HOST_UNIX)
+  set(LINKED_UTIL ON)
   add_custom_target(symlink ALL
-    COMMAND ln -sf libutil.so libutil_link.so
+    COMMAND ${CMAKE_COMMAND} -E create_symlink libutil.so libutil_link.so
     DEPENDS util
-    WORKING_DIRECTORY .
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     )
   set(LIBUTIL -L. -Wl,-rpath,. util_link)
 endif()
@@ -96,7 +102,9 @@ endif()
 foreach(src ${PROBLEMS})
   string(REGEX MATCH "^[^.]+" bin ${src})
   add_executable(${bin} ${src})
-  add_dependencies(${bin} symlink)
+  if(LINKED_UTIL)
+    add_dependencies(${bin} symlink)
+  endif(LINKED_UTIL)
   target_include_directories(${bin}
     PUBLIC ${INFILE_DIRECTORY}
     PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
@@ -104,8 +112,7 @@ foreach(src ${PROBLEMS})
     )
   target_link_libraries(${bin}
     ${LIBUTIL}
-    gmpxx
-    gmp
+    ${GMP}
     m
     )
 endforeach()

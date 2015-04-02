@@ -4,7 +4,7 @@
 #include "attributes.h"
 #include <boost/operators.hpp>
 #include <ostream>
-#include "vector.hh"
+#include <vector>
 
 class digit_breakdown
   : public boost::addable1<digit_breakdown>
