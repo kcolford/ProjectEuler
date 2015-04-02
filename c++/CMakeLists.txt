@@ -28,6 +28,7 @@ add_custom_command(OUTPUT primes.c
 
 add_library(util SHARED
   attributes.h
+  cast.hh
   digit_breakdown.cc
   digit_breakdown.hh
   digit_iterator.hh
@@ -74,6 +75,7 @@ set(PROBLEMS
   13.cc 
   14.cc 
   15.cc 
+  16.cc 
   42.cc
   44.cc
   45.cc

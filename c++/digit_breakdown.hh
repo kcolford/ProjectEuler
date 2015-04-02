@@ -3,6 +3,7 @@
 
 #include "attributes.h"
 #include <boost/operators.hpp>
+#include "cast.hh"
 #include <ostream>
 #include <vector>
 
@@ -87,7 +88,7 @@ public:
     : base(base_)
   {
     while (i > 0) {
-      push_front(i % base);
+      push_front(cast<digit_type>(T(i % base)));
       i /= base;
     }
   }

@@ -2,6 +2,7 @@
 
 #include "digit_breakdown.hh"
 #include <algorithm>
+#include "cast.hh"
 
 digit_breakdown& digit_breakdown::normalize()
 // Note that this can only handle positive digits in the
@@ -86,6 +87,6 @@ digit_breakdown::base_type digit_breakdown::sum() const
 std::ostream& operator<<(std::ostream& out, const digit_breakdown& d)
 {
   for (digit_breakdown::const_iterator i = d.begin(); i != d.end(); i++)
-    out << (digit_breakdown::base_type) *i;
+    out << cast<digit_breakdown::base_type>(*i);
   return out;
 }
