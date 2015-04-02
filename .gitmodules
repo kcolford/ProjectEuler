@@ -1,3 +1,9 @@
 [submodule "c++/jsoncpp"]
 	path = c++/jsoncpp
 	url = git@github.com:kcolford/jsoncpp.git
+[submodule "c++/cotire"]
+	path = c++/cotire
+	url = git@github.com:kcolford/cotire.git
+[submodule "c++/findgmp"]
+	path = c++/findgmp
+	url = git@github.com:kcolford/findgmp.git

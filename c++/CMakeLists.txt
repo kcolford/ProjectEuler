@@ -1,6 +1,13 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(ProjectEuler)
 
+set(CMAKE_MODULE_PATH
+  ${CMAKE_SOURCE_DIR}/cotire/CMake
+  ${CMAKE_SOURCE_DIR}/findgmp/cmake
+  )
+
+include(cotire)
+
 set(BUILD_SHARED_LIBS ON)
 
 set(INFILE_DIRECTORY "${CMAKE_SOURCE_DIR}/../")
@@ -17,9 +24,12 @@ add_compile_options(
 find_package(OpenMP)
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenMP_CXX_FLAGS}")
 
-set(GMP gmpxx gmp)
+find_package(Boost REQUIRED)
 
-find_package(PythonInterp)
+message(${CMAKE_MODULE_PATH})
+find_package(GMP REQUIRED)
+
+find_package(PythonInterp REQUIRED)
 if(PYTHONINTERP_FOUND)
   set(JSONCPP_DIR ${CMAKE_CURRENT_SOURCE_DIR}/jsoncpp/dist)
   add_custom_command(OUTPUT jsoncpp.cpp
@@ -68,9 +78,10 @@ add_library(util SHARED
 target_include_directories(util
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
   PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
+  PUBLIC ${Boost_INCLUDE_DIRS}
   )
 target_link_libraries(util
-  PUBLIC ${GMP} ${JSON_LIB}
+  PUBLIC ${GMP} ${JSON_LIB} ${Boost_LIBRARIES}
   )
 
 set(PROBLEMS
@@ -126,10 +137,11 @@ foreach(src ${PROBLEMS})
     PUBLIC ${INFILE_DIRECTORY}
     PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+    PUBLIC ${GMP_INCLUDE_DIR} ${GMPXX_INCLUDE_DIR}
     )
   target_link_libraries(${bin}
     ${LIBUTIL}
-    ${GMP}
+    ${GMP_LIBRARIES} ${GMPXX_LIBRARIES}
     m
     )
 endforeach()
