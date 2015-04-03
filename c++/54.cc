@@ -54,6 +54,9 @@ struct group
   {
     assert(!v.empty());
     vector<card>::iterator i = v.end();
+#ifndef NDEBUG
+    int s = v.size();
+#endif
     i--;
     value = i->value;
     suit = i->suit;

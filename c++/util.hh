@@ -8,6 +8,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <config.h>
 #include <fstream>
 #include <iostream>
 #include <iterator>
