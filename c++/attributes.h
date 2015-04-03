@@ -36,7 +36,7 @@
   GNU_ATTRIBUTE(__nothrow__)                    \
   CXX_ONLY(throw ())
 
-#define ATTRUBUTE_FLATTEN                       \
+#define ATTRIBUTE_FLATTEN                       \
   GNU_ATTRIBUTE(__flatten__)
 
 #define ATTRIBUTE_FORMAT(type, stridx, fst_argidx)      \

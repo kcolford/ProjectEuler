@@ -18,6 +18,8 @@ set(PROBLEMS
   16.cc 
   17.cc 
   18.cc 
+  19.cc 
+  20.cc 
   42.cc
   44.cc
   45.cc
