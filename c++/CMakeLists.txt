@@ -23,6 +23,10 @@ add_compile_options(
   -Wno-sign-compare
   )
 
+# Use C++11
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 # Add the options for OpenMP so that it can be used if desired.
 find_package(OpenMP)
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OpenMP_CXX_FLAGS}")
@@ -69,7 +73,7 @@ target_compile_options(util PUBLIC
   )
 set_property(TARGET util PROPERTY SOVERSION 1)
 set_property(TARGET util PROPERTY VERSION 1)
-cotire(util)
+#cotire(util)
 
 # The list of problem source files.
 include(problems)
@@ -79,6 +83,10 @@ foreach(src ${PROBLEMS})
   add_executable(${bin} ${src})
   target_link_libraries(${bin} PUBLIC util)
 endforeach()
+
+# Build time grows way too much whith full optimizations on this
+# problem.
+target_compile_options(22 PRIVATE -O0)
 
 # Set up a configuration file.
 configure_file(config.h config.h)

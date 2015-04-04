@@ -5,6 +5,7 @@
 #include <climits>
 #include "factoring.hh"
 #include "primes.hh"
+#include "sum.hh"
 
 using namespace std;
 
@@ -39,5 +40,22 @@ vector<int> prime_factors(long long n)
     }
   }
   return out;
+}
+
+set<int> factors(long long n)
+{
+  assert(n > 0);
+  set<int> out = {1};
+  for (int i = 2; n / i >= i; i++)
+    if (n % i == 0) {
+      out.insert(i);
+      out.insert(n / i);
+    }
+  return out;
+}
+
+int factor_sum(long long n)
+{
+  return sum(factors(n));
 }
 
