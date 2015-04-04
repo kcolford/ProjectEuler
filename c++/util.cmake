@@ -9,6 +9,7 @@ add_library(util SHARED
   digit_iterator.hh
   error_check.hh
   factoring.cc
+  factoring.hh
   has_member.hh
   iterator_compare.hh
   len.h

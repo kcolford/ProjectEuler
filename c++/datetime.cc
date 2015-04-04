@@ -3,7 +3,7 @@
 #include <cassert>
 #include "datetime.hh"
 
-enum { DAYS_IN_REGULAR_YEAR = 365 };
+#define DAYS_IN_REGULAR_YEAR 365
 
 bool is_leap_year(int year)
 {
