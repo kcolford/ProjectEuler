@@ -3,7 +3,7 @@
 #include "util.hh"
 #include "factoring.hh"
 
-enum { MAX_NON_ABUNDANT_SUM = 28123 };
+#define MAX_NON_ABUNDANT_SUM 28123
 
 int main()
 {
