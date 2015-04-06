@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cmath>
 
-#define len(a) (sizeof (a) / sizeof *(a))
+#include "util.hh"
 
 const char *words[] = {
 #include "42.in"
@@ -12,7 +12,7 @@ const char *words[] = {
 int calc[len(words)] = { 0 };
 
 int main() {
-    
+
 #pragma omp parallel for
     for (int i = 0; i < len(words); i++) {
 	while (*words[i]) {
@@ -37,7 +37,7 @@ int main() {
 	count = count + calc[i];
 
     std::cout << count << std::endl;
-    
+
     return 0;
 }
 
