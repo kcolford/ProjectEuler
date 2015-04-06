@@ -15,6 +15,8 @@ add_library(util SHARED
   len.h
   limiter.cc
   limiter.hh
+  multiplicative_order.cc
+  multiplicative_order.hh
   palindrome.hh
   primes.c
   primes.h
@@ -26,4 +28,9 @@ add_library(util SHARED
   util.cc
   util.hh
   vector.hh
+  )
+
+add_executable(util_test
+  multiplicative_order_test.cc 
+  util_test.cc
   )

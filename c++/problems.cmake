@@ -25,6 +25,7 @@ set(PROBLEMS
   23.cc 
   24.cc 
   25.cc 
+  26.cc 
   42.cc
   44.cc
   45.cc

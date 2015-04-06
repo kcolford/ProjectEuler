@@ -6,6 +6,12 @@ set(CMAKE_MODULE_PATH)
 set(LIBRARIES)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(BUILD_SHARED_LIBS ON)
+enable_testing()
+
+# Add a ``make check`` command
+add_custom_target(check 
+  ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target test --use-stderr
+  )
 
 # Use cotire to improve build time.
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cotire/CMake)
@@ -74,6 +80,14 @@ target_compile_options(util PUBLIC
 set_property(TARGET util PROPERTY SOVERSION 1)
 set_property(TARGET util PROPERTY VERSION 1)
 #cotire(util)
+
+# The util testing harness
+add_library(boost_test boost_test.cc)
+if(BUILD_SHARED_LIBS)
+  target_compile_definitions(boost_test PUBLIC -DBOOST_TEST_DYN_LINK)
+endif()
+target_link_libraries(util_test PUBLIC util boost_test)
+add_test(NAME util_test COMMAND util_test)
 
 # The list of problem source files.
 include(problems)

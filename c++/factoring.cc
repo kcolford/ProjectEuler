@@ -34,7 +34,7 @@ vector<int> prime_factors(long long n)
       out.push_back(n);
       break;
     }
-    if (n % primes[i] == 0) {
+    while (n % primes[i] == 0) {
       n /= primes[i];
       out.push_back(primes[i]);
     }
