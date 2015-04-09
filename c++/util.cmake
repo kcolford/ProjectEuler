@@ -25,12 +25,8 @@ add_library(util SHARED
   radixsort.cc
   radixsort.hh
   sum.hh
+  sequence_tester.hh
   util.cc
   util.hh
   vector.hh
-  )
-
-add_executable(util_test
-  multiplicative_order_test.cc 
-  util_test.cc
   )

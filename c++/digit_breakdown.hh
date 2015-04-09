@@ -44,6 +44,8 @@ private:
   void clear()
   { c.clear(); }
 
+public:
+
   size_type size() const
   { return c.size(); }
 
