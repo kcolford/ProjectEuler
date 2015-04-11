@@ -41,4 +41,5 @@ set(PROBLEMS
   67.cc
   78.cc
   81.cc
+  88.cc
   )

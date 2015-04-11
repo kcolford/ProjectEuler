@@ -42,6 +42,17 @@ vector<int> prime_factors(long long n)
   return out;
 }
 
+vector<int> low_factors(long long n)
+{
+  assert(n > 0);
+  vector<int> out;
+  out.push_back(1);
+  for (int i = 2; n / i >= i; i++)
+    if (n % i == 0)
+      out.push_back(i);
+  return out;
+}
+
 set<int> factors(long long n)
 {
   assert(n > 0);
