@@ -11,6 +11,8 @@ add_library(util SHARED
   factoring.cc
   factoring.hh
   has_member.hh
+  perfect_square.cc
+  perfect_square.hh
   iterator_compare.hh
   len.h
   limiter.cc

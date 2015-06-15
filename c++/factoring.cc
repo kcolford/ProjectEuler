@@ -28,7 +28,7 @@ int prime_index_of(int n)
 vector<int> prime_factors(long long n)
 {
   vector<int> out;
-  for (int i = 0; i < primes_length; i++) {
+  for (int i = 0; n != 1 && i < primes_length; i++) {
     if (n < INT_MAX && n / primes[i] < primes[i]) {
       assert(is_prime(n));
       out.push_back(n);

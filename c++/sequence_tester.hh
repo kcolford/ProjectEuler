@@ -1,5 +1,5 @@
-#ifndef TEST_SEQUENCE_HH
-#define TEST_SEQUENCE_HH
+#ifndef SEQUENCE_TESTER_HH
+#define SEQUENCE_TESTER_HH
 
 #include <algorithm>
 #include <boost/preprocessor.hpp>
@@ -22,7 +22,7 @@ typedef signed long long int test_data_type;
       BOOST_PP_ENUM(BOOST_PP_VARIADIC_SIZE(__VA_ARGS__),        \
                     TEST_SEQUENCE_APPLY, func)                  \
     };                                                          \
-    size_t l = std::min(len(test_data), len(right_data));          \
+    size_t l = std::min(len(test_data), len(right_data));       \
     BOOST_CHECK_EQUAL_COLLECTIONS(test_data, test_data + l,     \
                                   right_data, right_data + l);  \
   }
