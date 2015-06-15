@@ -14,14 +14,17 @@ int main()
   for (int c = 1001; ; c++) {
     int p = 0;
     mpz_class n = 1;
-    foreach (int i, prime_factors(c)) {
+    foreach_r (int i, prime_factors(c)) {
       mpz_class e;
       mpz_ui_pow_ui(e.get_mpz_t(), primes[p++], i - 1);
       n *= e;
     }
     m = min(m, n);
+
     if (m == n)
-      cout << n << endl;
+      cout << "c = " << c << "\t"
+           << "n = " << n << "\t"
+           << endl;
   }
   cout << m << endl;
 

@@ -3,5 +3,6 @@
 
 #include <boost/foreach.hpp>
 #define foreach BOOST_FOREACH
+#define foreach_r BOOST_REVERSE_FOREACH
 
 #endif

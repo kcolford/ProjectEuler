@@ -25,6 +25,8 @@ int prime_index_of(int n)
   return distance(primes, lower_bound(primes, primes_end, n));
 }
 
+// Return a vector of the prime factors of n.  The vector is sorted in
+// ascending order.
 vector<int> prime_factors(long long n)
 {
   vector<int> out;
