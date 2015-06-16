@@ -3,9 +3,14 @@
 #include <algorithm>
 #include <cassert>
 #include <climits>
+#include <map>
 #include "factoring.hh"
 #include "primes.hh"
 #include "sum.hh"
+
+#ifndef ENABLE_PRIME_FACTOR_CACHE
+# define ENABLE_PRIME_FACTOR_CACHE 0
+#endif
 
 using namespace std;
 
@@ -29,6 +34,13 @@ int prime_index_of(int n)
 // ascending order.
 vector<int> prime_factors(long long n)
 {
+#if ENABLE_PRIME_FACTOR_CACHE
+  static map<long long, vector<int> > cache;
+  if (cache.count(n))
+    return cache[n];
+  long long n_ = n;
+#endif
+
   vector<int> out;
   for (int i = 0; n != 1 && i < primes_length; i++) {
     if (n < INT_MAX && n / primes[i] < primes[i]) {
@@ -41,6 +53,10 @@ vector<int> prime_factors(long long n)
       out.push_back(primes[i]);
     }
   }
+
+#if ENABLE_PRIME_FACTOR_CACHE
+  cache[n_] = out;
+#endif
   return out;
 }
 
@@ -55,10 +71,11 @@ vector<int> low_factors(long long n)
   return out;
 }
 
-set<int> factors(long long n)
+// Return a set of all the factors of n, including 1 and n.
+set<long long> factors(long long n)
 {
   assert(n > 0);
-  set<int> out = {1};
+  set<long long> out = {1, n};
   for (int i = 2; n / i >= i; i++)
     if (n % i == 0) {
       out.insert(i);
@@ -72,3 +89,16 @@ int factor_sum(long long n)
   return sum(factors(n));
 }
 
+int count_factors(long long n)
+{
+  assert(n > 0);
+  vector<int> p = prime_factors(n);
+  int count = 1;
+  for (int i = 0, j = 0; i < p.size(); i = j) {
+    int c = 2;
+    for (j = i + 1; j < p.size() && p[i] == p[j]; j++, c++)
+      ;
+    count *= c;
+  }
+  return count;
+}

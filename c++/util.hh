@@ -14,6 +14,7 @@
 #include <iterator>
 #include "len.h"
 #include "limiter.hh"
+#include <limits>
 #include <sstream>
 #include <string>
 #include "vector.hh"

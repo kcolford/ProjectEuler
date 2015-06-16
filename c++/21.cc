@@ -2,12 +2,11 @@
 
 #include "util.hh"
 #include "factoring.hh"
-#include "sum.hh"
 
 bool is_amicable(int a)
 {
-  int b = sum(factors(a));
-  return a != b && a == sum(factors(b));
+  int b = factor_sum(a);
+  return a != b && a == factor_sum(b);
 }
 
 int main()
