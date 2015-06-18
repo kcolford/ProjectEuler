@@ -2,6 +2,8 @@
 
 // Find the first value for n, such that the equation 1/x + 1/y = 1/n
 // has more than 4 million (4,000,000) possible solutions.
+// 
+// The answer is: 9350130049860600
 
 // The solution runs instantly with full optimizations turned on.  It
 // uses the fact that 1/x + 1/y = 1/n is the same as y = n*n/(x - n) +
@@ -15,32 +17,37 @@
 
 int main()
 {
-  // regular int's are too small, use a quick macro hack to fix it
-#define int long long
+  // Note that we use int64_t because 32-bit ints are too small.
+  int64_t n_min = numeric_limits<int64_t>::max();
 
-  int m = numeric_limits<int>::max();
   for (int c = 4000001; c < 4100000; c++) {
-    long p = 0;
-    int n = 1;
-    foreach_r (int i, prime_factors(c * 2 - 1)) {
-      int e = primes[p++];      // there are more than 500,000 primes
-                                // in this array so we should be fine
-                                // for overflow
+    int     p = 0;
+    int64_t n = 1;
 
-      // use the square and multiply method with bit twiddling to
-      // speed up this innermost loop
-      i--;
-      while ((i >>= 1)) {
-        if (i & 1) n *= e;
+    foreach_r (int i, prime_factors(c * 2 - 1)) {
+      // Adjust i so that it is half of what it's supposed to be, that
+      // way we end up computing n instead of n*n.
+      i = (i - 1) / 2;
+
+      // Choose the smallest prime as a base for the largest exponent.
+      assert(p < primes_length);
+      int e = primes[p++];
+
+      // Use the square and multiply method with bit twiddling to
+      // speed up this innermost loop.
+      do {
+        if (i & 1)
+          n *= e;
         e *= e;
-      }
+      } while ((i >>= 1));
     }
-    if (0 < n && n < m) m = n;
+    if (0 < n && n < n_min)
+      n_min = n;
   }
 
-  assert(m < numeric_limits<int>::max()); // sanity check
+  assert(n_min < numeric_limits<int64_t>::max()); // sanity check
 
-  cout << m << endl;
+  cout << n_min << endl;
 
   return 0;
 }

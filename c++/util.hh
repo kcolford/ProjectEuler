@@ -8,6 +8,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include "cstdint.hh"
 #include <config.h>
 #include <fstream>
 #include <iostream>

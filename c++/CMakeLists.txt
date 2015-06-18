@@ -7,6 +7,8 @@ set(LIBRARIES)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(BUILD_SHARED_LIBS ON)
 
+# Enable profiling in the debug build.
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -pg")
 
 # Use cotire to improve build time.
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cotire/CMake)

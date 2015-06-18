@@ -2,12 +2,12 @@
 
 #include "perfect_square.hh"
 
-unsigned int_sqrt(unsigned s)
+uint64_t int_sqrt(uint64_t s)
 {
   if (s == 0)
     return 0;
 
-  unsigned long c = s, a = s;
+  uint64_t c = s, a = s;
   while ((c >>= 2))
     a >>= 1;
   
@@ -47,5 +47,3 @@ bool sum_product(int& s, int& p)
   s -= p;
   return true;
 }
-
-  

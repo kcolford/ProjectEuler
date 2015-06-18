@@ -13,10 +13,11 @@ int main()
     foreach_r (int i, prime_factors(c * 2 - 1)) {
       int e = primes[p++];
       i--;
-      while ((i >>= 1)) {
+      i /= 2;
+      do {
         if (i & 1) n *= e;
         e *= e;
-      }
+      } while ((i >>= 1));
     }
     if (0 < n && n < m) m = n;
   }

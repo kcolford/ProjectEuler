@@ -2,10 +2,12 @@
 #define PERFECT_SQUARE_HH
 
 #include "attributes.h"
+#include <cassert>
+#include "cstdint.hh"
 
 // Return the integer square root of s or 0 if it is not a perfect
 // square.
-unsigned int_sqrt(unsigned s)
+uint64_t int_sqrt(uint64_t s)
   ATTRIBUTE_CONST
   ;
 
@@ -18,7 +20,16 @@ bool is_perfect_square(unsigned s)
 //
 // If s is in fact a perfect square then sets s to to its square root.
 bool set_int_sqrt(unsigned& s)
+  ATTRIBUTE_FLATTEN
   ;
+
+// Overload on unsigned version.
+inline
+bool set_int_sqrt(int& s)
+{
+  assert(s >= 0);
+  return set_int_sqrt(reinterpret_cast<unsigned&>(s));
+}
 
 // Return a number such that there exists another number such that
 // their sum is s and their product is p.

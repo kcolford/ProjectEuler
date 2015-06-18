@@ -8,13 +8,13 @@
 #include <cstddef>
 #include "len.h"
 
-typedef signed long long int test_data_type;
-
 #define TEST_SEQUENCE_APPLY(z, n, f) f(n)
 
 #define TEST_SEQUENCE_FUNC(func, ...)                           \
   BOOST_AUTO_TEST_CASE(test_function_ ## func)                  \
   {                                                             \
+    typedef typename boost::result_of<func(int)>::type          \
+      test_data_type;                                           \
     static test_data_type right_data[] = {                      \
       __VA_ARGS__                                               \
     };                                                          \
